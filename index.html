@@ -1,0 +1,206 @@
+
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>StudyFlow | Organizador de Estudos</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <aside class="sidebar">
+    <h2>✦ StudyFlow</h2>
+    <p class="muted">ORGANIZAÇÃO</p>
+    <a href="#inicio">⌂ Painel inicial</a>
+    <a href="#tarefas">▤ Minhas tarefas</a>
+    <a href="#materias">▣ Matérias</a>
+    <a href="#cadastro">＋ Novo cadastro</a>
+    <div class="side-bottom">
+      <span>Seu foco, seu futuro.</span>
+    </div>
+  </aside>
+
+  <main>
+    <header id="inicio">
+      <div>
+        <p class="muted">ÁREA DE ESTUDOS</p>
+        <h1>Meu organizador </h1>
+        <p class="muted">Planeje sua semana e acompanhe sua evolução.</p>
+      </div>
+      <button id="novoBtn">+ Nova tarefa</button>
+    </header>
+
+    <section class="stats">
+      <article class="stat">
+        <span>Total de tarefas</span>
+        <strong id="total">0</strong>
+        <small>Atividades cadastradas</small>
+      </article>
+      <article class="stat">
+        <span>Concluídas</span>
+        <strong id="concluidas">0</strong>
+        <small>Tarefas finalizadas</small>
+      </article>
+      <article class="stat">
+        <span>Pendentes</span>
+        <strong id="pendentes">0</strong>
+        <small>Ainda por fazer</small>
+      </article>
+      <article class="stat">
+        <span>Progresso geral</span>
+        <strong id="percentual">0%</strong>
+        <div class="progress"><div id="barra"></div></div>
+      </article>
+    </section>
+
+    <section class="panel" id="cadastro">
+      <h2>✚ Cadastrar tarefa</h2>
+      <form id="formTarefa">
+        <input type="hidden" id="editId">
+
+        <label>Nome da tarefa
+          <input id="titulo" placeholder="Ex.: Revisar capítulo 3" required>
+        </label>
+
+        <label>Matéria
+          <select id="materia" required>
+            <option value="">Selecione uma matéria</option>
+          </select>
+        </label>
+
+        <label>Dia da semana
+          <select id="dia">
+            <option>Segunda-feira</option>
+            <option>Terça-feira</option>
+            <option>Quarta-feira</option>
+            <option>Quinta-feira</option>
+            <option>Sexta-feira</option>
+            <option>Sábado</option>
+            <option>Domingo</option>
+          </select>
+        </label>
+
+        <label>Data
+          <input id="data" type="date" required>
+        </label>
+
+        <label>Semana
+          <input id="semana" type="number" min="1" max="53" placeholder="Ex.: 10">
+        </label>
+
+        <label>Prioridade
+          <select id="prioridade">
+            <option>Baixa</option>
+            <option selected>Média</option>
+            <option>Alta</option>
+          </select>
+        </label>
+
+        <label>Nota de desempenho
+          <select id="nota">
+            <option>Baixa</option>
+            <option selected>Média</option>
+            <option>Alta</option>
+          </select>
+        </label>
+
+        <label>Status
+          <select id="status">
+            <option>Pendente</option>
+            <option>Em andamento</option>
+            <option>Concluída</option>
+          </select>
+        </label>
+
+        <label class="wide">Observações
+          <textarea id="observacoes" rows="3"
+            placeholder="Anotações, dúvidas e lembretes..."></textarea>
+        </label>
+
+        <div class="wide actions">
+          <button type="submit" id="salvarBtn">Salvar tarefa</button>
+          <button type="button" class="secondary" id="cancelarBtn">
+            Limpar
+          </button>
+        </div>
+      </form>
+    </section>
+
+    <section class="panel" id="materias">
+      <h2>▣ Cadastro de matérias</h2>
+      <form id="formMateria" class="subject-form">
+        <input id="novaMateria" placeholder="Nome da matéria (ex.: Matemática)" required>
+        <button type="submit">Adicionar matéria</button>
+      </form>
+      <div id="listaMaterias" class="chips"></div>
+    </section>
+
+    <section class="panel" id="tarefas">
+      <div class="section-heading">
+        <div>
+          <h2>▤ Planejamento de estudos</h2>
+          <p class="muted">Gerencie suas atividades e acompanhe os resultados.</p>
+        </div>
+      </div>
+
+      <div class="filters">
+        <input id="busca" placeholder="Buscar tarefa...">
+        <select id="filtroMateria">
+          <option value="">Todas as matérias</option>
+        </select>
+        <select id="filtroDia">
+          <option value="">Todos os dias</option>
+          <option>Segunda-feira</option>
+          <option>Terça-feira</option>
+          <option>Quarta-feira</option>
+          <option>Quinta-feira</option>
+          <option>Sexta-feira</option>
+          <option>Sábado</option>
+          <option>Domingo</option>
+        </select>
+        <select id="filtroPrioridade">
+          <option value="">Todas as prioridades</option>
+          <option>Baixa</option>
+          <option>Média</option>
+          <option>Alta</option>
+        </select>
+        <select id="filtroStatus">
+          <option value="">Todos os status</option>
+          <option>Pendente</option>
+          <option>Em andamento</option>
+          <option>Concluída</option>
+        </select>
+        <input id="filtroSemana" type="number" min="1" max="53"
+          placeholder="Nº da semana">
+        <button type="button" class="secondary" id="limparFiltros">
+          Limpar filtros
+        </button>
+      </div>
+
+      <div class="table-wrap">
+        <table>
+          <thead>
+            <tr>
+              <th>Tarefa</th>
+              <th>Matéria</th>
+              <th>Dia / Data</th>
+              <th>Semana</th>
+              <th>Prioridade</th>
+              <th>Nota</th>
+              <th>Status</th>
+              <th>Observações</th>
+              <th>Ações</th>
+            </tr>
+          </thead>
+          <tbody id="tabelaTarefas"></tbody>
+        </table>
+      </div>
+      <p id="contador" class="muted"></p>
+    </section>
+
+    <footer>StudyFlow · Pequenos passos, grandes conquistas ✨</footer>
+  </main>
+
+  <script src="script.js"></script>
+</body>
+</html>
